@@ -1,9 +1,27 @@
 const express = require('express');
+const actionsRouter = require("./actions/actions-router");
+const projectsRouter = require("./projects/projects-router");
+const cors = require("cors");
+const helmet = require("helmet");
+const path = require("path");
+
 const server = express();
 
-// Configure your server here
-// Build your actions router in /api/actions/actions-router.js
-// Build your projects router in /api/projects/projects-router.js
-// Do NOT `server.listen()` inside this file!
+server.use(express.json());
+server.use(express.static(path.join(__dirname, "client/build")));
+server.use(cors());
+server.use(helmet());
+server.use("/api/actions", actionsRouter);
+server.use("/api/projects", projectsRouter);
+
+//SANITY CHECK ENDPOINT
+server.get("/", (req, res, next)=>{
+    res.json({message: "API Up"});
+});
+
+server.use("*", (req, res)=>{
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
+
 
 module.exports = server;
