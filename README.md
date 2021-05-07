@@ -159,7 +159,31 @@ After finishing your required elements, you can push your work further. These go
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+Node is a runtime environment that allows us to run Javascript outside of the browser. Some advantages included being able to share
+a common language between back and front end, allowing for the possibility of better code, better communication, faster app. It also gives us
+access to npm out of the box and all the tools accessible via npm.
+
+Express is a framework for building web apps and services on top of node, and some of its advantages are express server side routing, which allows for the organization
+of endpoints and http methods in an efficient manner, as well as express middleware, which extends the functionality of express by intercepting requests and resolutions 
+and performing functions like validation or restructuring of objects/arrays.
+
 1. Understand and explain the use of Middleware.
+
+Middleware intercepts our request and resolution bodies and extends the functionality of express by performing actions on those bodies, such as validation. 
+
 1. The basic principles of the REST architectural style.
+
+REST stands for representational state transfer and represents a specific set of principles including a client-server architecture that communicates resources 
+formatted in JSON. Stateless protocols allow for state to be transferred to users at the point of resource access / request. 
+
 1. Understand and explain the use of Express Routers.
+
+Express routers allow us to keep our server code clean and organized by running functions like database data retrieval, data structuring/formatting and validation within router functions seperate and organized from our server file where our base URL / API path are defined. 
+
 1. Describe tooling used to manually test the correctness of an API.
+
+Tooling helps us avoid errors and keep our code standardized and DRY. 
+
+As an example, I can setup rules within the eslint package json that define how strict I am with semicolons or unused variables, or rules
+that help me align my code with that of my colleagues, whether its optimized for readability, speed, or something different. 
