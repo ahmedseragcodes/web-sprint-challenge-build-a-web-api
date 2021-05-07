@@ -19,6 +19,7 @@ server.get("/", (req, res, next)=>{
     res.json({message: "API Up"});
 });
 
+//If front end deployed on heroku, will send html file
 server.use("*", (req, res)=>{
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
