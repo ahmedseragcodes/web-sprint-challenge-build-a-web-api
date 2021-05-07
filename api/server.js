@@ -3,12 +3,12 @@ const actionsRouter = require("./actions/actions-router");
 const projectsRouter = require("./projects/projects-router");
 const cors = require("cors");
 const helmet = require("helmet");
-const path = require("path");
+// const path = require("path");
 
 const server = express();
 
 server.use(express.json());
-server.use(express.static(path.join(__dirname, "client/build")));
+// server.use(express.static(path.join(__dirname, "client/build")));
 server.use(cors());
 server.use(helmet());
 server.use("/api/actions", actionsRouter);
@@ -20,9 +20,9 @@ server.get("/", (req, res, next)=>{
 });
 
 //If front end deployed on heroku, will send html file
-server.use("*", (req, res)=>{
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
+// server.use("*", (req, res)=>{
+//     res.sendFile(path.join(__dirname, "client/build", "index.html"));
+// });
 
 
 module.exports = server;
