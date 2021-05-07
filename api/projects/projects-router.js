@@ -35,7 +35,45 @@ router.get("/:id", logger, validateProjectId, (req, res, next)=>{
 
 //[POST] New Project
 
+router.post("/", logger, (req, res, next)=>{
+
+    const newProject = req.body;
+
+    if(!newProject.name || !newProject.description || (newProject.completed !== false && newProject.completed !== true)){
+        res.status(400).json({message: "Name, Description & Completed Are Required Fields"});
+    } else {
+        Projects.insert(newProject)
+        .then((newestProject)=>{
+            res.status(201).json(newestProject);
+        })
+        .catch((err)=>{
+            res.status(500).json({message: err.message});
+        })
+    }
+
+});
+
 //[PUT] / Update Project
+
+router.put("/:id", logger, validateProjectId, (req, res, next)=>{
+
+    const { id } = req.params;
+
+    const updatedProject = req.body;
+
+    if(!updatedProject.name || !updatedProject.description || (updatedProject.completed !== false && updatedProject.completed !== true)){
+        res.status(400).json({message: "Name, Description & Completed Are Required Fields"});
+    } else {
+        Projects.update(id, updatedProject)
+        .then((newVersionOfProject)=>{
+            res.status(200).json(newVersionOfProject);
+        })
+        .catch((err)=>{
+            res.status(500).json({message: err.message});
+        })
+    }
+
+});
 
 //[DELETE] Project
 
