@@ -1,12 +1,36 @@
 const db = require('../../data/dbConfig.js');
 const mappers = require('../../data/helpers/mappers');
 
+
 module.exports = {
+  getProjectsActions,
   get,
   insert,
   update,
   remove,
 };
+
+/* 
+GET PROJECTS ACTIONS SQL
+
+SELECT PROJECTS.ID, PROJECTS.NAME, ACTIONS.PROJECT_ID, ACTIONS.DESCRIPTION FROM [PROJECTS]
+JOIN [ACTIONS]
+ON ACTIONS.PROJECT_ID = PROJECTS.ID
+
+*/
+
+function getProjectsActions(projectId){
+  
+  get(projectId)
+  .then((specificProject)=>{
+    return specificProject.actions;
+  })
+  .catch((err)=>{
+    console.log("FAILEd TO GET PROJECT BY ID", err);
+  })
+
+}
+
 
 function get(id) {
   let query = db('actions');
